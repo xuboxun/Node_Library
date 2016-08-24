@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>register</title>
+</head>
+<body>
+	<form method="post" action="do_register.js">
+		name:<input type="text" name="username" id="username"><br>
+		password:<input type="password" name="password" id="password"><br>
+		sex:<input type="text" name="sex" id="sex"><br>
+		<input type="submit" value="submit">
+	</form>
+	<div id="tips"></div>
+
+	<script type="text/javascript">
+		var obj = {
+			username : document.getElementById("username").value,
+			password : document.getElementById("password").value,
+			sex : document.getElementById("sex").value
+		};
+		var xhr = new XMLHttpRequest();
+		xhr.open('put','do_regster.js',true);
+		xhr.onload = function(e) {
+			if(this.state == 200) {
+				document.getElementById("tips").innerHTML = this.response;
+			}
+		};
+		// xmlhttp.onreadystatechange=function(){
+  // 			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+  //   			document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+  //  			}
+  // 		}
+		xhr.send(JSON.stringify(obj));
+	</script>
+</body>
+</html>

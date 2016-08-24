@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>login</title>
+</head>
+<body>
+	<form>
+		name:<input type="text" name="username" id="username"><br>
+		password:<input type="password" name="password" id="password"><br>
+		<input type="button" value="login" onclick="ajaxSubmit();">
+	</form>
+	<div id="tips"></div>
+	<script type="text/javascript">
+		var ajaxSubmit = function(){
+			var obj = {
+				username : document.getElementById("username").value,
+				password : document.getElementById("password").value
+			};
+			var xhr = new XMLHttpRequest();
+			xhr.open('post','login.html',true);
+			xhr.onload = function(e){
+	  			if(this.status == 200) {
+	  				if(xhr.responseText == "fail") {
+	  					document.getElementById('tips').innerHTML = "登录失败";
+	  				}else{
+	  					document.getElementById('tips').innerHTML = '登录成功，5秒后跳转，点此立即跳转 <a href="index.html">首页</a>';
+	  					setTimeout(function(){
+	  						window.location.href = "index.html";
+	  					}, 5000)
+	  				}
+	  			}
+	  		}
+			xhr.send(JSON.stringify(obj));
+		};
+		// ajaxSubmit();
+	</script>
+</body>
+</html>
