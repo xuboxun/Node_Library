@@ -9,18 +9,19 @@
 	<div id="wrapper">
 		<div class="login">
 			<div class="left">
-				something
+				<img src="images/logo.png">
 			</div>
 			<div class="right">
+				<h2>图书管理系统/<i>登陆</i></h2>
 				<form>
-					name:<input type="text" name="username" id="username"><br>
-					password:<input type="password" name="password" id="password"><br>
-					<input type="button" value="login" onclick="ajaxSubmit();">
+					<span><font>用户名</font><input type="text" name="username" id="username" placeholder="请输入用户名"></span>
+					<span><font>密码</font><input type="password" name="password" id="password" placeholder="请输入密码"></span>
+					<span class="option"><input type="button" value="登陆" onclick="ajaxSubmit();"><input type="button" value="注册" onclick="register();"></span>
+					<div id="tips"></div>
 				</form>
 			</div>
 		</div>
 	</div>
-	<div id="tips"></div>
 	<script type="text/javascript">
 		var ajaxSubmit = function(){
 			var obj = {
@@ -32,17 +33,24 @@
 			xhr.onload = function(e){
 	  			if(this.status == 200) {
 	  				if(xhr.responseText == "fail") {
-	  					document.getElementById('tips').innerHTML = "登录失败";
+	  					document.getElementById('tips').innerHTML = "登录失败，请检查用户名密码是否正确";
 	  				}else{
-	  					document.getElementById('tips').innerHTML = '登录成功，5秒后跳转，点此立即跳转 <a href="index">首页</a>';
-	  					setTimeout(function(){
-	  						window.location.href = "index";
-	  					}, 5000)
+	  					var time = 3;
+	  					var timer = setInterval(function(){
+	  						document.getElementById('tips').innerHTML = '登录成功，' + time-- +'秒后跳转';
+	  						if(time < 0) {
+	  							clearInterval(timer);
+					  			window.location.href = "index";
+	  						}
+	  					}, 1000);
 	  				}
 	  			}
 	  		}
 			xhr.send(JSON.stringify(obj));
 		};
+		var register = function() {
+			window.location.href = "register";
+		}
 		// ajaxSubmit();
 	</script>
 </body>
