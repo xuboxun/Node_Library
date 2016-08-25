@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>index</title>
+</head>
+<body>
+	index <br>
+	文章：<%=title%><br>
+	<%items.forEach(function(item){ %>
+		<li><%= item.title%></li>
+	<%})%>
+
+	<a href="login">login</a> <br>
+	<a href="register">register</a>
+</body>
+</html>

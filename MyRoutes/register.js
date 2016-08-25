@@ -4,7 +4,8 @@ var pool = require('../dbConnect.js');
 var router = express.Router();
 
 router.get('/',function(req,res) {
-	res.sendFile(__viewPath + 'register.html');
+	// res.sendFile(__viewPath + 'register.html');
+	res.render('register');
 });
 
 router.post('/',function(req,res) {
@@ -23,10 +24,16 @@ router.post('/',function(req,res) {
 					if(err)  {
 						console.log("insert error");
 					}else{
-						console.log("insert success");
+						var flag = "";
+						if(result == null || result == "" ||result == undefined) {
+							flag = "fail";
+						}else{
+							flag = "success";
+						}
 					}
 					connection.release();
-					res.redirect('/login.html');
+					console.log(flag);
+					res.send(flag);
 				})
 			}
 		})

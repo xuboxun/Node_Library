@@ -5,7 +5,8 @@ var pool = require('../dbConnect.js');
 
 //login.html
 router.get('/',function(req,res) {
-	res.sendFile(__viewPath + 'login.html')
+	// res.sendFile(__viewPath + 'login.html')
+	res.render('login');
 });
 
 //do_login

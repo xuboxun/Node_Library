@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>register</title>
+</head>
+<body>
+	<form method="post" action="do_register.js">
+		name:<input type="text" name="username" id="username"><br>
+		password:<input type="password" name="password" id="password"><br>
+		sex:<input type="text" name="sex" id="sex"><br>
+		<input type="button" value="注册" onclick="ajaxSubmit();">
+	</form>
+	<div id="tips"></div>
+
+	<script type="text/javascript">
+		var ajaxSubmit = function() {
+			var obj = {
+				username : document.getElementById("username").value,
+				password : document.getElementById("password").value,
+				sex : document.getElementById("sex").value
+			};
+			var xhr = new XMLHttpRequest();
+			xhr.open('post','register',true);
+			xhr.onload = function(e) {
+				if(this.state == 200) {
+					if(xhr.responseText == "fail") {
+		  				document.getElementById('tips').innerHTML = "注册失败";
+	  				}else{
+	  					document.getElementById('tips').innerHTML = '登录成功，5秒后跳转，点此立即跳转 <a href="login">首页</a>';
+	  					setTimeout(function(){
+	  						window.location.href = "login";
+	  					}, 5000)
+	  				}
+				}
+			};
+			xhr.send(JSON.stringify(obj));
+		};
+	</script>
+</body>
+</html>
