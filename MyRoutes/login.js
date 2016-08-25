@@ -3,7 +3,7 @@ var router = express.Router();
 var querystring = require('querystring');
 var pool = require('../dbConnect.js');
 
-//login.html
+//login.ejs
 router.get('/',function(req,res) {
 	// res.sendFile(__viewPath + 'login.html')
 	res.render('login');

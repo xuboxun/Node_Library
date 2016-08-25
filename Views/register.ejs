@@ -1,36 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>register</title>
+	<link rel="stylesheet" type="text/css" href="css/register.css">
 </head>
 <body>
-	<form method="post" action="do_register.js">
-		name:<input type="text" name="username" id="username"><br>
-		password:<input type="password" name="password" id="password"><br>
-		sex:<input type="text" name="sex" id="sex"><br>
-		<input type="button" value="注册" onclick="ajaxSubmit();">
-	</form>
-	<div id="tips"></div>
+	<div id="wrapper">
+		<div class="register">
+			<h2>用户注册</h2>
+			<form>
+				<span><font>用户名</font><input type="text" name="username" id="username"></span>
+				<span><font>密码</font><input type="password" name="password" id="password"></span>
+				<span><font>确认密码</font><input type="password" name="repwd" id="repwd"></span>
+				<span><font>邮箱</font><input type="text" name="email" id="email"></span>
+				<span><font>专业</font><input type="text" name="sex" id="major"></span>
+				<span class="option"><input type="button" value="注册" onclick="ajaxSubmit();"></span>
+			</form>
+			<div id="tips"></div>
+		</div>
+		<div class="introduction">
+			
+		</div>
+	</div>
 
 	<script type="text/javascript">
 		var ajaxSubmit = function() {
 			var obj = {
-				username : document.getElementById("username").value,
+				username : document.getElementById("username").value.trim(),
 				password : document.getElementById("password").value,
-				sex : document.getElementById("sex").value
+				repwd    : document.getElementById("repwd").value,
+				email    : document.getElementById("email").value.trim(),
+				major    : document.getElementById("major").value.trim()
 			};
+			if(obj.username == ""){
+				document.getElementById('tips').innerHTML = "用户名不能为空";
+			}else if(obj.password == ""){
+				document.getElementById('tips').innerHTML = "密码不能为空";
+			}else if(obj.repwd == "" || obj.password != obj.repwd){
+				document.getElementById('tips').innerHTML = "密码输入不一致";
+			}else if(obj.email == "") {
+				document.getElementById('tips').innerHTML = "邮箱不能为空";
+			}else if(obj.major == "") {
+				document.getElementById('tips').innerHTML = "专业不能为空";
+			}else{
+				doajax();
+			}
+
+		};
+		var doajax = function(){
 			var xhr = new XMLHttpRequest();
 			xhr.open('post','register',true);
 			xhr.onload = function(e) {
 				if(this.state == 200) {
 					if(xhr.responseText == "fail") {
-		  				document.getElementById('tips').innerHTML = "注册失败";
+		  				document.getElementById('tips').innerHTML = "注册失败，请重试";
 	  				}else{
-	  					document.getElementById('tips').innerHTML = '登录成功，5秒后跳转，点此立即跳转 <a href="login">首页</a>';
+	  					document.getElementById('tips').innerHTML = '注册成功，5秒后跳转，点此立即跳转 <a href="login">首页</a>';
 	  					setTimeout(function(){
 	  						window.location.href = "login";
 	  					}, 5000)
 	  				}
+				}else{
+					alert(this.state)
 				}
 			};
 			xhr.send(JSON.stringify(obj));
