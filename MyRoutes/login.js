@@ -3,14 +3,14 @@ var router = express.Router();
 var querystring = require('querystring');
 var pool = require('../dbConnect.js');
 
-//login.ejs
+//登陆页面
 router.get('/',function(req,res) {
 	// res.sendFile(__viewPath + 'login.html')
 	res.render('login');
 });
 
-//do_login
-router.post('/',function(req,res) {
+//登陆操作
+router.post('/do_login',function(req,res) {
 	req.on('data',function(data) {
 		var input = JSON.parse(data.toString());
 		pool.getConnection(function(err,connection) {
@@ -35,7 +35,6 @@ router.post('/',function(req,res) {
 						}
 					}
 					connection.release();
-					console.log(flag);
 					res.send(flag);
 				})
 			}

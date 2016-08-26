@@ -29,7 +29,7 @@
 				password : document.getElementById("password").value
 			};
 			var xhr = new XMLHttpRequest();
-			xhr.open('post','login',true);
+			xhr.open('post','login/do_login',true);
 			xhr.onload = function(e){
 	  			if(this.status == 200) {
 	  				if(xhr.responseText == "fail") {

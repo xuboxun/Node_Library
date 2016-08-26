@@ -1,19 +1,47 @@
 var express = require('express');
-var fs = require('fs');
 var querystring = require('querystring');
 var pool = require('../dbConnect.js');
 var router = express.Router();
 
+//注册页面
 router.get('/',function(req,res) {
 	// res.sendFile(__viewPath + 'register.html');
 	res.render('register');
 });
 
-router.post('/',function(req,res) {
-	console.log('sa');
+//查询用户名是否存在 find_username
+router.post('/find_username',function(req,res) {
+	console.log("find_user");
+	req.on('data',function(data) {
+		var username = data.toString();
+		console.log(username);
+		pool.getConnection(function(err,connection) {
+			if(err) {
+				console.log("connect mysql error");
+			}else {
+				var sql = 'select id from user where username = "' + username +'"';
+				connection.query(sql,function(err,result) {
+					if(err) {
+						console.log(err);
+					}else {
+						//用户名未注册
+						if(result.length == 0){
+							res.send("yes");
+						}else{
+							res.send("no");
+						}
+					}
+				})
+			}
+			connection.release();
+		})
+	})
+})
+
+//执行注册操作 do_register
+router.post('/do_register',function(req,res) {
 	req.on('data',function(data){
-		var input = querystring.parse(data.toString());
-		console.log(input);
+		var input = JSON.parse(data.toString());
 		pool.getConnection(function(err,connection) {
 			if(err) {
 				console.log("error");
@@ -27,6 +55,7 @@ router.post('/',function(req,res) {
 				},function(err,result){
 					var flag = "";
 					if(err)  {
+						flag = "fail";
 						console.log("insert error");
 					}else{
 						if(result == null || result == "" || result == undefined) {
@@ -36,7 +65,6 @@ router.post('/',function(req,res) {
 						}
 					}
 					connection.release();
-					console.log(flag);
 					res.send(flag);
 				})
 			}

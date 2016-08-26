@@ -25,8 +25,28 @@
 	</div>
 
 	<script type="text/javascript">
+		var username = document.getElementById("username").value;
+		var finduser = setInterval(function(){
+			if(username == document.getElementById("username").value) {
+				document.getElementById('tips').innerHTML = "";
+			}else {
+				username = document.getElementById("username").value;
+				var xhr = new XMLHttpRequest();
+				xhr.open('post','register/find_username',true);
+				xhr.onload = function(e) {
+					if(this.status == 200) {
+						if(xhr.responseText == "no") {
+			  				document.getElementById('tips').innerHTML = "用户名已存在，请更换";
+		  				}
+					}
+				};
+				xhr.send(username);
+			}
+		}, 500);
+
+		var obj = {};
 		var ajaxSubmit = function() {
-			var obj = {
+			obj = {
 				username : document.getElementById("username").value.trim(),
 				password : document.getElementById("password").value,
 				repwd    : document.getElementById("repwd").value,
@@ -50,19 +70,22 @@
 		};
 		var doajax = function(){
 			var xhr = new XMLHttpRequest();
-			xhr.open('post','register',true);
+			xhr.open('post','register/doreg',true);
 			xhr.onload = function(e) {
-				if(this.state == 200) {
+				if(this.status == 200) {
 					if(xhr.responseText == "fail") {
 		  				document.getElementById('tips').innerHTML = "注册失败，请重试";
 	  				}else{
-	  					document.getElementById('tips').innerHTML = '注册成功，5秒后跳转，点此立即跳转 <a href="login">首页</a>';
-	  					setTimeout(function(){
-	  						window.location.href = "login";
-	  					}, 5000)
+	  					var time = 3;
+	  					var timer = setInterval(function(){
+	  						document.getElementById('tips').innerHTML = '注册成功，' + time-- +'秒后跳转';
+	  						if(time < 0) {
+	  							clearInterval(finduser);
+	  							clearInterval(timer);
+					  			window.location.href = "index";
+	  						}
+	  					}, 1000);
 	  				}
-				}else{
-					alert(this.state)
 				}
 			};
 			xhr.send(JSON.stringify(obj));
