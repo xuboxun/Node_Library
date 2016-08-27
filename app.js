@@ -6,7 +6,8 @@ var pool = require('./dbConnect.js');
 
 //---------------------------------
 var app = express();
-app.listen(3000,"localhost");
+app.listen(3000);
+console.log("listen");
 //----------------------------------
 
 /*

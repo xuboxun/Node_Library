@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>index</title>
+	<meta charset="utf-8">
+	<title>沸点图书管理系统</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-	index <br>
-	文章：<%=title%><br>
-	<%items.forEach(function(item){ %>
-		<li><%= item.title%></li>
-	<%})%>
-
-	<a href="login">login</a> <br>
-	<a href="register">register</a>
+	<div id="wrapper">
+		<div id="banner">banner</div>
+		<div id="container">
+			<div id="header">head</div>
+			<div id="main">main</div>
+		</div>
+		<div id="footer"></div>
+	</div>
 </body>
 </html>
