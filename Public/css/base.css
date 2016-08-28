@@ -10,6 +10,10 @@ a {
 	text-decoration: none;
 	color: #666;
 }
+ul li {
+	float: left;
+	list-style-type: none;
+}
 #wrapper {
 	width:100%;
 }
@@ -26,15 +30,36 @@ a {
 }
 .banner-left {
 	float: left;
-	width:200px;
+	width:auto;
 	height: 40px;
-	background: #aaa;
+}
+.banner-left ul li {
+	padding-left: 10px;
+	padding-right: 10px;
+	line-height: 40px;
+}
+.banner-left ul li a {
+	display: inline-block;
+	float: left;
+	width: 100%;
+	height: 100%;
+	color: #fff;
 }
 .banner-right {
 	float: right;
-	width:100px;
+	width:auto;
 	height: 40px;
-	background: #aaa;
+	line-height: 40px;
+}
+.banner-right a {
+	display: inline-block;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: #fff;
+}
+.banner-right a:hover {
+	color: red;
+	background: #363446;
 }
 #header {
 	width:100%;
@@ -61,7 +86,7 @@ a {
 }
 #main{
 	width: 100%;
-	height: 670px;
+	min-height: 550px;
 	float: left;
 	/*background: lightblue;*/
 }
@@ -76,7 +101,7 @@ a {
 	background: #eee;
 }
 .footer {
-	height: 110px;
+	height: 100px;
 }
 .footer-top {
 	width: 100%;
