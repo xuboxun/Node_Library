@@ -3,6 +3,7 @@ var http = require('http');
 var fs = require('fs');
 var querystring = require('querystring');
 var pool = require('./dbConnect.js');
+var partials = require('express-partials');
 
 //---------------------------------
 var app = express();
@@ -21,6 +22,8 @@ var path = require('path');
 app.use(express.static(path.join(__dirname, 'Public')));
 //模板引擎
 app.set('view engine','ejs');
+//模板继承
+app.use(partials());
 //设置页面目录
 app.set('views','./Views');
 

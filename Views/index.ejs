@@ -3,42 +3,19 @@
 <head>
 	<meta charset="utf-8">
 	<title>沸点图书共享平台</title>
+	<link rel="stylesheet" type="text/css" href="css/base.css">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-	<div id="wrapper">
-		<div id="banner">
-			<div class="container">
-				<div class="banner-left">导航</div>
-				<div class="banner-right">登陆/用户名</div>
-			</div>
-		</div>
-		<div class="container">
-			<div id="header">
-				<img src="images/logo.png">
-				<h1>沸点工作室图书共享平台</h1>
-			</div>
-			<div id="main">
-				<a class="section" href="/search"><div class="section">图书检索</div></a>
-				<a class="section" href="/books"><div class="section">所有图书</div></a>
-				<a class="section" href="/chat"><div class="section">交流大厅</div></a>
-				<a class="section" href="/myenjoy"><div class="section">我的共享</div></a>
-				<a class="section" href="/myborrow"><div class="section">我的借阅</div></a>
-				<a class="section" href="/person"><div class="section">个人资料</div></a>
-			</div>		
-		</div>
-		<div id="footer">
-			<div class="container footer">
-				<div class="footer-top">
-					<span><a href="http://www.52feidian.com/" target="blanket">沸点工作室</a></span>
-					<span><a href="http://www.52feidian.com/contact/" target="blanket">联系我们</a></span>
-					<span><a href="https://github.com/52FeidianStudio" target="blanket">沸点github</a></span>
-				</div>
-				<div class="footer-bottom">
-					    Copyright © 2010-2016, 华中农业大学 沸点工作室, All Rights Reserved 
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+<!-- 引用头部 -->
+<% include layout-header %>		
+
+<a class="section" href="/search"><div class="section">图书检索</div></a>
+<a class="section" href="/books"><div class="section">所有图书</div></a>
+<a class="section" href="/chat"><div class="section">交流大厅</div></a>
+<a class="section" href="/myenjoy"><div class="section">我的共享</div></a>
+<a class="section" href="/myborrow"><div class="section">我的借阅</div></a>
+<a class="section" href="/person"><div class="section">个人资料</div></a>
+
+<!-- 引用尾部 -->
+<% include layout-footer %>
