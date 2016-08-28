@@ -37,3 +37,21 @@ app.use('/login', login);
 //register module
 var register = require('./MyRoutes/register.js');
 app.use('/register', register);
+//search module
+var search = require('./MyRoutes/search.js');
+app.use('/search', search);
+//books module
+var books = require('./MyRoutes/books.js');
+app.use('/books', books);
+//chat module
+var chat = require('./MyRoutes/chat.js');
+app.use('/chat', chat);
+//myenjoy module
+var myenjoy = require('./MyRoutes/myenjoy.js');
+app.use('/myenjoy', myenjoy);
+//myborrow module
+var myborrow = require('./MyRoutes/myborrow.js');
+app.use('/myborrow', myborrow);
+//person module
+var person = require('./MyRoutes/person.js');
+app.use('/person', person);

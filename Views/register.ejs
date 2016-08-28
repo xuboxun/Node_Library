@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>register</title>
+	<title>沸点图书共享平台</title>
 	<link rel="stylesheet" type="text/css" href="css/register.css">
 </head>
 <body>
@@ -26,21 +26,26 @@
 
 	<script type="text/javascript">
 		var username = document.getElementById("username").value;
-		var finduser = setInterval(function(){
+		var finduser = function(){
+			username = document.getElementById("username").value;
+			var xhr = new XMLHttpRequest();
+			xhr.open('post','register/find_username',true);
+			xhr.onload = function(e) {
+				if(this.status == 200) {
+					if(xhr.responseText == "no") {
+		  				document.getElementById('tips').innerHTML = "用户名已存在，请更换";
+	  				}else{
+	  					document.getElementById('tips').innerHTML = "";
+	  				}
+				}
+			};
+			xhr.send(username);
+		}
+		setInterval(function(){
 			if(username == document.getElementById("username").value) {
-				document.getElementById('tips').innerHTML = "";
+				
 			}else {
-				username = document.getElementById("username").value;
-				var xhr = new XMLHttpRequest();
-				xhr.open('post','register/find_username',true);
-				xhr.onload = function(e) {
-					if(this.status == 200) {
-						if(xhr.responseText == "no") {
-			  				document.getElementById('tips').innerHTML = "用户名已存在，请更换";
-		  				}
-					}
-				};
-				xhr.send(username);
+				finduser();
 			}
 		}, 500);
 
@@ -64,13 +69,16 @@
 			}else if(obj.major == "") {
 				document.getElementById('tips').innerHTML = "专业不能为空";
 			}else{
-				doajax();
+				finduser();
+				if(document.getElementById('tips').innerHTML == "") {
+					doajax();
+				}
 			}
 
 		};
 		var doajax = function(){
 			var xhr = new XMLHttpRequest();
-			xhr.open('post','register/doreg',true);
+			xhr.open('post','register/do_register',true);
 			xhr.onload = function(e) {
 				if(this.status == 200) {
 					if(xhr.responseText == "fail") {
