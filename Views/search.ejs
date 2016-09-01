@@ -3,13 +3,53 @@
 <head>
 	<meta charset="utf-8">
 	<title>沸点图书共享平台</title>
-	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/search.css">
 </head>
 <body>
 <!-- 引用头部 -->
 <% include layout-header %>	
 	
-search
+<div class="search">
+	<h1>图书检索</h1>
+	<div class="search-form">
+		<form method="post" action="/search/search-result">
+			<span>
+				<h2>检索条件</h2>
+				<label><font>按书名查找</font><input type="radio" name="condition" value="1"></label>
+				<label><font>按类型查找</font><input type="radio" name="condition" value="2"></label>
+				<label><font>按作者查找</font><input type="radio" name="condition" value="3"></label>
+				<label><font>按分享人查找</font><input type="radio" name="condition" value="4"></label>
+			</span>
+			<span>
+				<h2>检索内容</h2>
+				<input type="text" name="content">
+			</span>
+			<span>
+				<input type="submit" value="检索">
+			</span>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	document.getElementsByTagName('form')[0].onsubmit = function(){
+		var flag = 0;
+		var input = document.getElementsByTagName('input');
+		for(var i = 0;i < input.length;i++) {
+			if(input[i].type === "radio") {
+				flag = flag | Number(input[i].checked);
+			}else if(input[i].type === "text") {
+				flag = flag & Number(input[i].value.trim() != "");
+			}else{
 
+			}
+		}
+		if(flag == 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+</script>
 <!-- 引用尾部 -->
 <% include layout-footer %>

@@ -3,10 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<title>沸点图书共享平台</title>
-	<link rel="stylesheet" type="text/css" href="css/register.css">
+	<link rel="stylesheet" type="text/css" href="/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/register.css">
 </head>
 <body>
-	<div id="wrapper">
+<!-- 引用头部 -->
+<% include layout-header %>		
+	<div id="register-wrapper">
 		<div class="register">
 			<h2>用户注册</h2>
 			<form>
@@ -23,7 +26,8 @@
 			
 		</div>
 	</div>
-
+<!-- 引用尾部 -->
+<% include layout-footer %>
 	<script type="text/javascript">
 		var username = document.getElementById("username").value;
 		var finduser = function(){

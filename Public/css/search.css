@@ -1,0 +1,123 @@
+.search {
+	width: 100%;
+	height: auto;
+}
+.search h1 {
+	width: 100%;
+	height: 80px;
+	margin-top: 15px;
+	float: left;
+	line-height: 80px;
+	text-align: center;
+	font-weight: 400;
+}
+.search-form span {
+	width: 100%;
+	height: 50px;
+	margin-top: 10px;
+	display: inline-block;
+	float: left;
+	text-align: center;
+}
+.search-form span h2 {
+	display: inline-block;
+	width: 120px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	font-weight: 400;
+	font-size: 1.4em;
+	margin-right: 20px;
+}
+.search-form span font {
+	padding-left: 5px;
+	padding-right: 5px;
+	font-size: 1.15em;
+}
+.search-form span input[type='radio'] {
+	margin-right: 10px;
+}
+.search-form span input[type='text'] {
+	width: 350px;
+	height: 30px;
+	font-size: 1.2em;
+	padding-left: 5px;
+	border-radius: 3px;
+	border: 1px solid #aaa;
+	position: relative;
+	top: -5px;
+}
+.search-form span:nth-child(3) {
+	margin-top: 50px;
+	line-height: 50px;
+	float: left;
+}
+.search-form span input[type='submit'] {
+	width: 200px;
+	height: 50px;
+	font-size: 1.15em;
+	text-align: center;
+	letter-spacing: 10px;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+}
+
+/*search result*/
+.search-result {
+	width: 100%;
+	margin-top: 0px;
+	min-height: 200px;
+	float: left;
+	margin-bottom: 30px;
+}
+.search-result-section {
+	width: 100%;
+	height:100px;
+	border: 1px solid #ccc;
+	margin-bottom: 5px;
+	position: relative;
+}
+.search-result-section img.books {
+	height: 80px;
+	margin: 9px;
+	margin-right: 18px;
+	float: left;
+	border: 1px solid #999;
+}
+.search-result-section img.books:hover {
+	cursor: pointer;
+}
+.search-result-section h2,h3 {
+	display: inline-block;
+	margin-top: 5px;
+	float: left;
+	font-size: 1.2em;
+	color: #333;
+	margin-bottom: 5px;
+}
+.search-result-section h3 {
+	margin-left: 15px;
+}
+.search-result-section span {
+	display: inline-block;
+	width: calc(100% - 120px);
+	height: 24px;
+	line-height: 24px;
+	float: left;
+	font-size: 0.8em;
+}
+
+.show-bookimg {
+	border: 1px solid #000;
+	position: absolute;
+	width:220px;
+	height:280px;
+	left: 120px;
+	top: -90px;
+	z-index: 999;
+}
+.show-bookimg img {
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+}

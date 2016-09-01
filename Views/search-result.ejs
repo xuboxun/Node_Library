@@ -11,16 +11,20 @@
 <% include layout-header %>	
 	
 <div class="search">
-	<h1>所有图书</h1>
+	<h1>图书检索</h1>
 	<div class="search-result">
-	<%books.forEach(function(item){ %>
-		<div class="search-result-section">
-			<img class="books" <%='src=/uploads/books/' + item.img%>>
-			<a href="javscript:void(0);"><h2><%= item.bookname%></h2><h3><%= item.author%> 著</h3></a>
-			<span>类别:<%= item.type%></span>
-			<span>分享人:<%= item.belong%></span>
-		</div>
-	<%})%>
+	<%if(books.length == 0){%>
+		没找到相关书籍
+	<%}else{%>
+		<%books.forEach(function(item){ %>
+			<div class="search-result-section">
+				<img class="books" <%='src=/uploads/books/' + item.img%>>
+				<a href="javscript:void(0);"><h2><%= item.bookname%></h2><h3><%= item.author%> 著</h3></a>
+				<span>类别:<%= item.type%></span>
+				<span>分享人:<%= item.belong%></span>
+			</div>
+		<%})%>
+	<%}%>
 	</div>
 </div>
 <script>
@@ -38,6 +42,5 @@
 	}
 
 </script>
-
 <!-- 引用尾部 -->
 <% include layout-footer %>
