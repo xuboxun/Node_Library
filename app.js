@@ -4,6 +4,8 @@ var fs = require('fs');
 var querystring = require('querystring');
 var pool = require('./dbConnect.js');
 var partials = require('express-partials');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
 
 //---------------------------------
 var app = express();
@@ -27,6 +29,13 @@ app.set('view engine','ejs');
 app.use(partials());
 //设置页面目录
 app.set('views','./Views');
+//session & cookie
+app.use(cookieParser());
+app.use(session({
+	resave: true, // don't save session if unmodified
+  	saveUninitialized: false, // don't create session until something stored
+	secret: 'node'
+}));
 
 /*
 * 路由规则

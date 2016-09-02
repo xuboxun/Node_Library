@@ -29,9 +29,17 @@ router.post('/search-result',function(req,res) {
 						condition = "belong";
 						break;
 				}
-				var sql = "select book.id,book.bookname,book.author,book.type,book.img,book.status,"+
+				var sql = "";
+				if(condition != "belong") {
+					sql = "select book.id,book.bookname,book.author,book.type,book.img,book.status,"+
 						  "user.nickname belong from book inner join user on book.belong = user.id where "+
 						   condition + " = '" + input.content + "'";
+				}else {
+					sql = "select book.id,book.bookname,book.author,book.type,book.img,book.status,"+
+						  "user.nickname belong from book inner join user on book.belong = user.id where " +
+						  "user.username = '" + input.content + "' or user.nickname = '" + input.content + "'";
+				}
+				console.log(sql);
 				connection.query(sql,function(err,result) {
 					if(err) {
 						console.log('query error');

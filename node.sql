@@ -26,6 +26,7 @@ CREATE TABLE `book` (
   `id` int(11) NOT NULL,
   `bookname` varchar(45) NOT NULL,
   `author` varchar(45) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
   `belong` varchar(45) DEFAULT NULL,
   `img` varchar(100) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
@@ -39,6 +40,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
+INSERT INTO `book` VALUES (1,'javascript高级程序设计','Nicholas','web,javascript','4','js.jpg',0),(2,'Node.js权威指南','陆凌牛','web,Node','3','node.jpg',0),(3,'javascript高级程序设计','Nicholas','web,javascript','1','js.jpg',1),(5,'javascript高级程序设计','Nicholas','web,javascript','5','js.jpg',1),(6,'javascript高级程序设计','Nicholas','web,javascript','2','js.jpg',0),(7,'javascript高级程序设计','Nicholas','web,javascript','6','js.jpg',1);
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,6 +68,7 @@ CREATE TABLE `borrow` (
 
 LOCK TABLES `borrow` WRITE;
 /*!40000 ALTER TABLE `borrow` DISABLE KEYS */;
+INSERT INTO `borrow` VALUES (1,'1','4','',NULL,NULL);
 /*!40000 ALTER TABLE `borrow` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,12 +82,13 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
+  `nickname` varchar(45) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `major` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`,`username`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +97,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'node','node','666@666.com','node'),(2,'marry','marrypwd','233@233.com','233'),(9,'huang','node','node','node'),(10,'huangyifan','node','666','666');
+INSERT INTO `user` VALUES (1,'node','node','node','666@666.com','node'),(2,'marry','marry','marrypwd','233@233.com','233'),(3,'test','test','node','node','node'),(4,'huangyifan','fan','node','666','666'),(5,'su','su','su','su','su'),(6,'boxun','asd','boxun','boxun','boxun');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -106,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-27 20:29:07
+-- Dump completed on 2016-09-02 11:31:28

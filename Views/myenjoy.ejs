@@ -4,12 +4,50 @@
 	<meta charset="utf-8">
 	<title>沸点图书共享平台</title>
 	<link rel="stylesheet" type="text/css" href="/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/search.css">
 </head>
 <body>
 <!-- 引用头部 -->
 <% include layout-header %>	
-	
-myenjoy
+
+<div class="search">
+	<h1>我的分享</h1>
+	<div class="search-result">
+	<%if(!login){%>
+		请先登陆
+		<script>
+			setTimeout(function(){
+				window.location.href = "/login";
+			},1000)
+		</script>
+	<%}else if(books.length == 0){%>
+		您还没有分享的书籍
+	<%}else{%>
+		<%books.forEach(function(item){ %>
+			<div class="search-result-section">
+				<img class="books" <%='src=/uploads/books/' + item.img%>>
+				<a href="javscript:void(0);"><h2><%= item.bookname%></h2><h3><%= item.author%> 著</h3></a>
+				<span>类别:<%= item.type%></span>
+			</div>
+		<%})%>
+	<%}%>
+	</div>
+</div>
+<script>
+	books = document.getElementsByClassName("books");
+	for(var i = 0;i < books.length;i++) {
+		books[i].onmouseover = function() {
+			var oDiv = document.createElement('div');
+			oDiv.className = "show-bookimg";
+			oDiv.innerHTML = "<img src='" + this.src +"'></div>";
+			this.parentNode.appendChild(oDiv);
+		}
+		books[i].onmouseout = function() {
+			this.parentNode.removeChild(document.getElementsByClassName("show-bookimg")[0])
+		}
+	}
+
+</script>
 
 <!-- 引用尾部 -->
 <% include layout-footer %>

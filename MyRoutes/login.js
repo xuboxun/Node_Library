@@ -18,22 +18,25 @@ router.post('/do_login',function(req,res) {
 				console.log('connect error');
 			}else {
 				console.log('connect success');
-				var query = 'select id from user where username="'+input.username+'" and password="'+input.password+'"';
+				var query = 'select * from user where username="'+input.username+'" and password="'+input.password+'"';
 				connection.query(query,function(err,result){
 					var flag = "";
 					if(err) {
 						console.log("err");
 						flag = "fail";
 					}else{
-						console.log(result);
 						if(result == null || result == "" ||result == undefined) {
 							// res.redirect('./login.html');
 							flag = "fail";
 						}else{
 							// res.redirect('./index.html');
 							flag = "success";
+							var user = result[0];
+        					req.session.user = user;
+
 						}
 					}
+					console.log(req.session.user)
 					connection.release();
 					res.send(flag);
 				})
